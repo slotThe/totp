@@ -23,7 +23,7 @@ SHA1 ⇐ { # https://datatracker.ietf.org/doc/html/rfc3174
     𝕩≤79? HtB "CA62C1D6"
   }
   S ← { («⍟𝕨 𝕩) ∨ ((32-𝕨)⥊0)»𝕩 }  # Circular shift S
-  P ← 2‿32⊸TB (2⋆32)|+○(2⊸×⊸+˜´⌽) # Adding bit vectors
+  P ← 32‿1•bit._add⌾⌽             # Adding bit vectors
 
   # Method 1 in the RFC
   ms ∾↩ 1 ∾ ((512-512|l+65)⥊0) ∾ 2‿64 TB (l←≠ms) # Pad
