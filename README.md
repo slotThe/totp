@@ -24,6 +24,10 @@ digits, and SHA1 as the hashing algorithm. Incidentally, this covers
 100% of my real-world use-cases for TOTP, so it seems like a sane
 minimal implementation.
 
+## Inspirations
+
+The venerable [mintotp](https://github.com/susam/mintotp).
+
 [RFC 2104]: https://datatracker.ietf.org/doc/html/rfc2104
 [RFC 3174]: https://datatracker.ietf.org/doc/html/rfc3174
 [RFC 4226]: https://datatracker.ietf.org/doc/html/rfc4226
