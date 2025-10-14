@@ -47,9 +47,8 @@ HMAC ⇐ { k 𝕊 text: # https://datatracker.ietf.org/doc/html/rfc2104
 }
 
 B32d ⇐ { # Base32 decoding; https://datatracker.ietf.org/doc/html/rfc4648
-  x ← ∾ 2‿5⊸TB∘(⊑(('A'+↕26)∾'0'+2+↕6)⊸⊐)¨ '='⊸≠⊸/ 𝕩 # To binary in 5-bit slices
-  b ← / (⌊8÷˜≠x)⥊8                                  # Reslice for bytes
-  ∾ (b ∾ ((≠x)-≠b)⥊¯1) ⊔ x                          # Drop excess
+  ∾˝ ⌊‿8⥊ ∾ 2‿5⊸TB∘(⊑(('A'+↕26)∾'0'+2+↕6)⊸⊐)¨ '='⊸≠⊸/ 𝕩
+  # To binary in 5-bit slices, then to bytes and drop excess.
 }
 
 HOTP ⇐ { k 𝕊 c: # https://datatracker.ietf.org/doc/html/rfc4226
