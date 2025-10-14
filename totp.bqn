@@ -22,7 +22,7 @@ SHA1 ⇐ { # https://datatracker.ietf.org/doc/html/rfc3174
     𝕩≤59? HtB "8F1BBCDC";
     𝕩≤79? HtB "CA62C1D6"
   }
-  S ← { («⍟𝕨 𝕩) ∨ ((32-𝕨)⥊0)»𝕩 }  # Circular shift S
+  S ← ⌽                           # Circular shift S
   P ← 32‿1•bit._add⌾⌽             # Adding bit vectors
 
   # Method 1 in the RFC
