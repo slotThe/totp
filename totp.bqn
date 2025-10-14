@@ -41,7 +41,8 @@ SHA1 ⇐ { # https://datatracker.ietf.org/doc/html/rfc3174
 }
 
 HMAC ⇐ { k 𝕊 text: # https://datatracker.ietf.org/doc/html/rfc2104
-  k ∾↩ (512-512|≠k)⥊0      # Pad to positive multiples of 512
+  "HMAC: key should not exceed block length of SHA1" ! 512≥≠k
+  k ↩ 512↑k                # Pad to 64 bytes
   P ← { ∾ 64⥊ < 24↓ HtB𝕩 } # ipad and opad
   SHA1 (k XOR P"5C") ∾ SHA1 (k XOR P"36")∾text
 }
