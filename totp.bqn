@@ -26,7 +26,7 @@ SHA1 ⇐ { # https://datatracker.ietf.org/doc/html/rfc3174
   P ← 32‿1•bit._add⌾⌽             # Adding bit vectors
 
   # Method 1 in the RFC
-  ms ∾↩ 1 ∾ ((512-512|l+65)⥊0) ∾ 2‿64 TB (l←≠ms) # Pad
+  ms ∾↩ 1 ∾ ((512|-l+65)⥊0) ∾ 2‿64 TB (l←≠ms) # Pad to multiples of 512
   hs ← HtB¨ ⟨"67452301","EFCDAB89","98BADCFE","10325476","C3D2E1F0"⟩
   { ws ← 16‿32⥊𝕩
     W  ← {𝕩⊏ws} # Block important here
@@ -41,7 +41,7 @@ SHA1 ⇐ { # https://datatracker.ietf.org/doc/html/rfc3174
 }
 
 HMAC ⇐ { k 𝕊 text: # https://datatracker.ietf.org/doc/html/rfc2104
-  k ∾↩ (512-512|≠k)⥊0      # Pad with zeros
+  k ∾↩ (512-512|≠k)⥊0      # Pad to positive multiples of 512
   P ← { ∾ 64⥊ < 24↓ HtB𝕩 } # ipad and opad
   SHA1 (k XOR P"5C") ∾ SHA1 (k XOR P"36")∾text
 }
