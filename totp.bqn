@@ -28,7 +28,7 @@ SHA1 ⇐ { # https://datatracker.ietf.org/doc/html/rfc3174
   # Method 1 in the RFC
   ms ∾↩ 1 ∾ ((512|-l+65)⥊0) ∾ 2‿64 TB (l←≠ms) # Pad to multiples of 512
   hs ← HtB¨ ⟨"67452301","EFCDAB89","98BADCFE","10325476","C3D2E1F0"⟩
-  { ws ← 16‿32⥊𝕩
+  { ws ← 𝕩
     W  ← {𝕩⊏ws} # Block important here
     {ws ∾↩ 1 S (W𝕩-16) XOR (W𝕩-14) XOR (W𝕩-8) XOR (W𝕩-3) ⋄@}¨16+↕64
     ⟨a,b,c,d,e⟩ ← hs
@@ -36,7 +36,7 @@ SHA1 ⇐ { # https://datatracker.ietf.org/doc/html/rfc3174
      e↩d ⋄ d↩c ⋄ c↩30 S b ⋄ b↩a ⋄ a↩temp ⋄@}¨↕80
     hs P¨↩ ⟨a,b,c,d,e⟩
     @
-  }˘ ∘‿512⥊ms # Groups of 16 words: M(1) to M(n)
+  }˘ ∘‿16‿32⥊ms # Groups of 16 words: M(1) to M(n)
   ∾hs # Result as binary string
 }
 
