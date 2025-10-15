@@ -56,7 +56,7 @@ HOTP ⇐ { k 𝕊 c: # https://datatracker.ietf.org/doc/html/rfc4226
   hm ← (B32d k) HMAC 2‿64 TB c
   # Turn low-order 4-bits to number n and then take the bytes hm[n] to
   # hm[n+3], keeping in mind hm has a flat representation.
-  p  ← (8×2⊸×⊸+˜´4↑⌽hm)+↕8×4
+  p  ← (8×2⊸×⊸+˜´⌽¯4↑hm)+↕8×4
   r  ← (10⋆6)| 2⊸×⊸+˜´⌽ 1↓ p⊏hm # Take last 31 bits only.
   '0'+ 10‿6 TB r
 }
